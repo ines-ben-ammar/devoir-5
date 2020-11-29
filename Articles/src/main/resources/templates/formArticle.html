@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template">
+<link rel="stylesheet" type="text/css"
+	href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+<head>
+<meta charset="utf-8">
+<title>Ajout des Articles</title>
+</head>
+<body>
+	<div layout:fragment="Mycontent">
+		<div class="container mt-5">
+			<div class="card">
+			<div class="card-header" th:if="${mode=='new'}"> Ajout des Articles </div>
+             <div class="card-header" th:if="${mode=='edit'}">Modification des Articles
+           </div>
+               <div>
+				<div class="card-body">
+					<form th:action="@{saveArticle}" method="post">
+						<div class="form-group">
+							<label class="control-label" hidden>ID Article :</label> <input
+								type="hidden" name="idArticle" class="form-control"
+								th:value="${article.idArticle}" />
+						</div>
+						<div class="form-group">
+							<label class="control-label">libelle :</label> 
+							<input type="text" name="libelle" class="form-control"
+							 th:value="${article.libelle}"/>
+							<span th:errors= ${article.libelle} class="text-danger"> </span>
+						</div>
+						<div class="form-group">
+							<label class="control-label">description :</label>
+							 <input type="text" name="description" class="form-control" th:value="${article.description}"/> 
+							 <span th:errors= ${article.description} class="text-danger"> </span>
+						</div>
+						<div class="form-group">
+							<label class="control-label">marque :</label> 
+							<input type="text" name="marque" class="form-control" th:value="${article.marque}"/>
+							<span th:errors= ${article.marque} class="text-danger"> </span>
+						</div>
+						<div class="form-group">
+							<label class="control-label">prix Unitaire :</label>
+							 <input type="text" name="prixUnitaire" class="form-control" th:value="${article.prixUnitaire}"/> 
+							 <span th:errors= ${article.prixUnitaire} class="text-danger"> </span>
+						</div>
+						<div class="form-group">
+							<label class="control-label">date création :</label>
+							 <input	type="date" name="dateCreation" class="form-control" th:value="${article.dateCreation}"/>
+							 <span th:errors= ${article.dateCreation} class="text-danger"> </span>
+						</div>
+						<div>
+							<button type="submit" class="btn btn-primary">Valider</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
